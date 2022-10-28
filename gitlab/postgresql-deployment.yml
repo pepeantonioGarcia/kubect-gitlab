@@ -16,7 +16,12 @@ spec:
       containers:
       - name: postgresql
         image: sameersbn/postgresql:12-20200524
-        imagePullPolicy: Always
+        resources:
+          requests:
+            ephemeral-storage: "2Gi"
+          limits:
+            ephemeral-storage: "5Gi"
+        imagePullPolicy: IfNotPresent        
         env:
         - name: DB_USER
           value: gitlab
@@ -26,7 +31,6 @@ spec:
           value: gitlab_production
         - name: DB_EXTENSION
           value: pg_trgm,btree_gist
-
         ports:
         - name: postgres
           containerPort: 5432

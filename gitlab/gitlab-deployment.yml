@@ -17,7 +17,12 @@ spec:
       containers:
       - name: gitlab
         image: sameersbn/gitlab:15.5.1
-        imagePullPolicy: Always
+        resources:
+          requests:
+            ephemeral-storage: "2Gi"
+          limits:
+            ephemeral-storage: "5Gi"
+        imagePullPolicy: IfNotPresent
         env:
         - name: TZ
           value: America/Mexico_City        
@@ -112,6 +117,8 @@ spec:
         volumeMounts:
         - mountPath: /home/git/data
           name: data
+        - mountPath: /var/log/gitlab
+          name: cache  
         livenessProbe:
           httpGet:
             path: /users/sign_in
@@ -128,4 +135,7 @@ spec:
       - name: data
         persistentVolumeClaim:
           claimName: gitlab-data
+      - name: cache
+        persistentVolumeClaim:
+          claimName: gitlab-cache    
           

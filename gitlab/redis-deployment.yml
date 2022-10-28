@@ -15,7 +15,13 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis:3.2.4
+        image: redis:5.0.8
+        resources:
+          requests:
+            ephemeral-storage: "2Gi"
+          limits:
+            ephemeral-storage: "5Gi"
+        imagePullPolicy: IfNotPresent        
         ports:
         - name: redis
           containerPort: 6379
