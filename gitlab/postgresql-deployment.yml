@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: postgresql
-        image: sameersbn/postgresql:9.5-3
+        image: sameersbn/postgresql:12-20200524
         imagePullPolicy: Always
         env:
         - name: DB_USER
@@ -25,7 +25,8 @@ spec:
         - name: DB_NAME
           value: gitlab_production
         - name: DB_EXTENSION
-          value: pg_trgm
+          value: pg_trgm,btree_gist
+
         ports:
         - name: postgres
           containerPort: 5432
