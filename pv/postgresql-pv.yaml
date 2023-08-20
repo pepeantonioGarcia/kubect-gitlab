@@ -11,8 +11,8 @@ spec:
   persistentVolumeReclaimPolicy: Recycle
   storageClassName: nfs  
   nfs:
-    path: /home/funkwhale/share/gitlab/postgresql
-    server: 192.168.1.45  
+    path: /home/ubuntu/share/postgresql
+    server: 192.168.1.3
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
