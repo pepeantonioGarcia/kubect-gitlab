@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: postgresql
-        image: sameersbn/postgresql:12-20200524
+        image: sameersbn/postgresql:15-20230628
         resources:
           requests:
             ephemeral-storage: "2Gi"
@@ -31,6 +31,8 @@ spec:
           value: gitlab_production
         - name: DB_EXTENSION
           value: pg_trgm,btree_gist
+        - name: PG_PASSWORD 
+          value: +BP52QIxpT/flVCMpL3KXA==
         ports:
         - name: postgres
           containerPort: 5432

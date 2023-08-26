@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: gitlab
-        image: sameersbn/gitlab:15.5.1
+        image: sameersbn/gitlab:16.3.0
         resources:
           requests:
             ephemeral-storage: "2Gi"
@@ -35,11 +35,6 @@ spec:
           value: KVaMTKLAIElEp0s4L02c1O9JCP0Rfapb
         - name: GITLAB_SECRETS_OTP_KEY_BASE
           value: nXJJ358Qnci0yF9qpAsLrF2vImaoFR03
-
-        - name: GITLAB_ROOT_PASSWORD
-          value: GitlabRootPassword
-        - name: GITLAB_ROOT_EMAIL
-          value: root@example.com
 
         - name: GITLAB_HOST
           value: gitlab.ptdev.tk
@@ -67,7 +62,7 @@ spec:
         - name: DB_PORT
           value: "5432"
         - name: DB_USER
-          value: gitlab
+          value: postgres
         - name: DB_PASS
           value: +BP52QIxpT/flVCMpL3KXA==
         - name: DB_NAME
