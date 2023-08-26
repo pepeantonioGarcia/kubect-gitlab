@@ -125,3 +125,21 @@ Edit `gitlab-runner/gitlab-runner-docker-configmap.yml` and fill in your runner 
 > $ kubectl create -f gitlab-runner/gitlab-runner-docker-configmap.yml
 > $ kubectl create -f gitlab-runner/gitlab-runner-docker-deployment.yml
 ```
+
+
+Nginx and Cert Manager Config
+helm repo add \
+    ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+
+helm install ingress-nginx ingress-nginx/ingress-nginx --namespace gitlab
+
+
+helm repo add jetstack https://charts.jetstack.io
+ helm repo update
+
+ helm install \
+   cert-manager jetstack/cert-manager \
+   --namespace gitlab \
+   --set installCRDs=true
+
