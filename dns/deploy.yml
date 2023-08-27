@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: external-dns
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: external-dns
+  template:
+    metadata:
+      labels:
+        app: external-dns
+    spec:
+      containers:
+      - name: external-dns
+        image: registry.k8s.io/external-dns/external-dns:v0.13.5
+        args:
+        - --source=ingress # ingress is also possible                
+        - --provider=cloudflare
+        env:
+        - name: CF_API_TOKEN
+          value: "5v8ffcvmoYAtDXwcPFQUIYCuEYwQqUEQnd4xl_ZG"
+        - name: CF_API_EMAIL
+          value: "joseantonio64211@gmail.com"

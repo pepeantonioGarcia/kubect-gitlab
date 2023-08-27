@@ -4,14 +4,17 @@ metadata:
   name: gitlab
   annotations:
      kubernetes.io/ingress.class: nginx
-     cert-manager.io/issuer: "letsencrypt-staging"
+     cert-manager.io/issuer: "letsencrypt-prod"
+     external-dns.alpha.kubernetes.io/hostname: gitlab.ptdev.tk
+     external-dns.alpha.kubernetes.io/ttl: "120" #optional
 spec:  
+
   tls:
      - hosts:
        - gitlab-test.ptdev.tk
-       secretName:  tls-gitlab-cert
+       secretName:  gitlab-certificate
   rules:
-    - host: gitlab-test.ptdev.tk
+    - host: gitlab.ptdev.tk
       http:
         paths:
         - path: /
